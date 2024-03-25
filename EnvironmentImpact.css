@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(181, 181, 181, 0.573);
+    backdrop-filter: blur(10px);
+    height: 80px;
+    z-index: 2000;
+}
+
+.logo{
+    color:#edecec;
+
+
+}
+
+nav a {
+    text-decoration: none; /* 移除链接的下划线 */
+    color: #f2f2f2;
+    font-weight: 600;
+    font-size: 19px;
+    transition: 300ms;
+    padding: 8px 16px;
+    border-radius: 99px;
+}
+
+.user-form-group a{
+    color: #fefefe;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 19px;
+
+}
+
+.signup{
+    border: rgba(255, 255, 255, 0.5) 2px solid;
+    padding: 8px 16px;
+    margin-left: 16px;
+    border-radius: 99px;
+    transition: 300ms;
+}
+
+.signup:hover{
+    background: white;
+    color: gray;
+}
+
+.login{
+    border: rgba(255, 255, 255, 0.5) 2px solid;
+    padding: 8px 16px;
+    margin-left: 16px;
+    border-radius: 99px;
+    transition: 300ms;
+}
+
+.login:hover{
+    background: white;
+    color: gray;
+}
+
+.nav{
+    display: flex;
+    margin-right: 16px;
+}
+
+.nav a:hover{
+    background-color: rgba(181, 181, 181, 0.573);
+}
+
+.nav .logo{
+    display: none;
+}
+
+
+
+.menu{
+    font-size: 40px;
+    color: #ffffff;
+    cursor: pointer;
+    
+}
