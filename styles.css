@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 20px;
+}
+header {
+    background-color: #fff; /* Change background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+    padding: 10px 0; /* Add padding */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff; /* Change text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.navbar-brand:hover {
+    color: #0056b3; /* Change text color on hover */
+}
+.container {
+    max-width: 800px;
+}
+
+.upload-form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #007bff; /* Change background color */
+    color: #fff; /* Change text color */
+    padding: 20px 0; /* Add padding */
+    text-align: center;
+}
+
+.social-links a {
+    margin: 0 10px; /* Add margin */
+    color: #fff; /* Change text color */
+    text-decoration: none; /* Remove underline */
+}

@@ -1,0 +1,35 @@
+/* Header */
+header {
+    background-color: #fff; /* Change background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+    padding: 10px 0; /* Add padding */
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff; /* Change text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.navbar-brand:hover {
+    color: #0056b3; /* Change text color on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #007bff; /* Change background color */
+    color: #fff; /* Change text color */
+    padding: 20px 0; /* Add padding */
+    text-align: center;
+}
+
+.social-links a {
+    margin: 0 10px; /* Add margin */
+    color: #fff; /* Change text color */
+    text-decoration: none; /* Remove underline */
+}
+
+.social-links a:hover {
+    color: #0056b3; /* Change text color on hover */
+}

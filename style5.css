@@ -1,0 +1,27 @@
+body {
+  background-image: url('background.jpg');
+  background-size: cover;
+  color: #fff;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card-title {
+  color: #fff;
+}
+
+.form-check-label {
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
