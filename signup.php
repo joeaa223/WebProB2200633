@@ -39,6 +39,11 @@
             <label for="dietary_preferences">Dietary Preferences:</label><br>
             <input type="text" id="dietary_preferences" name="dietary_preferences"><br>
 
+            <!-- Password field -->
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br>
+
+
             <!-- Reminder Frequency -->
             <label for="reminder">Preferred Reminder Frequency:</label><br>
             <select id="reminder" name="reminder">
