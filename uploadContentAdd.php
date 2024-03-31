@@ -13,6 +13,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Get fk_AdminID from session
+$fk_AdminID = $_SESSION['Admin_id'];
+
 // Sanitize user inputs
 $Title = sanitizeInput($_POST['Title']);
 $Description = sanitizeInput($_POST['Description']);
@@ -52,11 +55,11 @@ $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/';
 move_uploaded_file($_FILES['Image']['tmp_name'], $uploadDir . $Image);
 
 // Prepare SQL statement with prepared statement
-$sql = "INSERT INTO tbl_content (Title, Description, Image, Content_type, Link, TalkPoints, Extra, BLink, ALink)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO tbl_content (Title, Description, Image, Content_type, Link, TalkPoints, Extra, BLink, ALink, fk_AdminID)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssssss", $Title, $Description, $Image, $Content_type, $Link, $TalkPoints, $Extra, $BLink, $ALink);
+$stmt->bind_param("ssssssssss", $Title, $Description, $Image, $Content_type, $Link, $TalkPoints, $Extra, $BLink, $ALink, $fk_AdminID);
 
 if ($stmt->execute()) {
     echo "New record successfully added!";
@@ -67,4 +70,3 @@ if ($stmt->execute()) {
 $stmt->close();
 $conn->close();
 ?>
-

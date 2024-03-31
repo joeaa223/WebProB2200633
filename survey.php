@@ -55,32 +55,25 @@
       transform: translate(-50%, -50%);
       display: block;
     }
+
+    .navbar-nav .nav-link:hover {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
   </style>
 </head>
 <body>
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#" style="margin-right: 900px;">HCS Survey</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="videoMain.php">Main Page</a>
-          </li>
-        </ul>
-      </div>
+      <a class="navbar-brand" href="#" style="margin-right: auto;">HCS Survey</a>
+      <a class="nav-link" href="#">Main Page</a>
     </div>
   </nav>
 </header>
 
-
 <div class="container mt-5">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
       <div class="card">
         <div class="card-body">
           <h2 class="card-title text-center">HCS Site Survey Questions</h2>
@@ -222,22 +215,22 @@
   </div>
 </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function validateForm() {
-      var suggestion1 = document.getElementById("q1_suggestion").value;
-      var suggestion2 = document.getElementById("q2_suggestion").value;
-      var suggestion3 = document.getElementById("q3_suggestion").value;
-      var suggestion4 = document.getElementById("q4_suggestion").value;
-      var suggestion5 = document.getElementById("q5_suggestion").value;
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function validateForm() {
+    var suggestion1 = document.getElementById("q1_suggestion").value;
+    var suggestion2 = document.getElementById("q2_suggestion").value;
+    var suggestion3 = document.getElementById("q3_suggestion").value;
+    var suggestion4 = document.getElementById("q4_suggestion").value;
+    var suggestion5 = document.getElementById("q5_suggestion").value;
 
-      if (suggestion1.length < 5 || suggestion2.length < 5 || suggestion3.length < 5 || suggestion4.length < 5 || suggestion5.length < 5) {
-        alert("Suggestions must be at least 5 characters long.");
-        return false; // Prevent form submission
-      } else {
-        return true; // Proceed with form submission
-      }
+    if (suggestion1.length < 5 || suggestion2.length < 5 || suggestion3.length < 5 || suggestion4.length < 5 || suggestion5.length < 5) {
+      alert("Suggestions must be at least 5 characters long.");
+      return false; // Prevent form submission
+    } else {
+      return true; // Proceed with form submission
     }
-  </script>
+  }
+</script>
 </body>
 </html>

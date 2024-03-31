@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Establish connection to the database
 $conn = mysqli_connect('localhost', 'root', '', 'hcs');
 
@@ -60,6 +61,30 @@ if ($uploadOk == 0) {
     }
 }
 
+function getYouTubeVideoId($url) {
+    $videoId = '';
+    if (strpos($url, 'youtube.com') !== false) {
+        parse_str(parse_url($url, PHP_URL_QUERY), $queryParams);
+        if (isset($queryParams['v'])) {
+            $videoId = $queryParams['v'];
+        }
+    } elseif (strpos($url, 'youtu.be') !== false) {
+        $videoId = substr(parse_url($url, PHP_URL_PATH), 1);
+    }
+    return $videoId;
+}
+
+// Extract YouTube video ID from the provided YouTube link
+$videoId = getYouTubeVideoId($Link);
+
+// Construct BLink (embedded URL) and ALink (specific YouTube link/URL)
+$BLink = '';
+$ALink = '';
+if (!empty($videoId)) {
+    $BLink = "https://www.youtube.com/embed/$videoId"; // Embedded URL
+    $ALink = "https://www.youtube.com/watch?v=$videoId"; // Specific YouTube link/URL
+}
+
 // Update the content details in the database using prepared statement
 $sql = "UPDATE tbl_content SET 
         Title = ?,
@@ -68,11 +93,14 @@ $sql = "UPDATE tbl_content SET
         Link = ?,
         TalkPoints = ?,
         Extra = ?,
-        Image = ?
+        Image = ?,
+        BLink = ?,
+        ALink = ?
         WHERE ContentID = ?";
 
+
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssssi", $Title, $Description, $Content_type, $Link, $TalkPoints, $Extra, $imageName, $ContentID);
+$stmt->bind_param("sssssssssi", $Title, $Description, $Content_type, $Link, $TalkPoints, $Extra, $imageName, $BLink, $ALink, $ContentID);
 
 if ($stmt->execute()) {
     // Redirect back to the admin content page or a confirmation page
@@ -84,4 +112,5 @@ if ($stmt->execute()) {
 $stmt->close(); // Close prepared statement
 $conn->close(); // Close the database connection
 ?>
+
 

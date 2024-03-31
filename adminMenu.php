@@ -1,3 +1,19 @@
+<?php
+    session_start(); // Start the session
+     // Check if a customer is logged in
+     $userInfo = "";
+
+     if (isset($_SESSION['Admin_id'])) {
+         $userInfo = "Admin ID: " . $_SESSION['Admin_id'];
+     } else {
+         $userInfo = "No user is currently logged in.";
+     }
+     
+     echo $userInfo;
+?>    
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +135,7 @@
     <header>
         <div class="container">
             <h1 class="header-title">Admin Menu</h1>
-            <a href="#" class="back-to-home">Back to Homepage</a>
+            <a href="adminLogin.php" class="back-to-home">Logout</a>
         </div>
     </header>
 

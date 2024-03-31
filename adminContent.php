@@ -99,7 +99,8 @@
         }
 
         // Fetch all content from the database
-        $contentQuery = "SELECT * FROM tbl_content";
+        $adminID = $_SESSION['Admin_id'];
+        $contentQuery = "SELECT * FROM tbl_content WHERE fk_AdminID = $adminID";
         $result = $conn->query($contentQuery);
 
         if ($result && $result->num_rows > 0) {
