@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco-Friendly Event Calendar</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4 mb-4">Eco-Friendly Event Calendar</h1>
+    
+    <!-- Event Filtering Options -->
+    <form id="eventFilterForm">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="category">Category:</label>
+          <select class="form-control" id="category">
+            <option value="">All Categories</option>
+            <option value="workshops">Workshops</option>
+            <option value="tree-planting">Tree Planting</option>
+            <!-- Add more categories here -->
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="location">Location:</label>
+          <input type="text" class="form-control" id="location" placeholder="Enter location">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="date">Date:</label>
+          <input type="date" class="form-control" id="date">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Apply Filters</button>
+    </form>
+
+    <hr>
+
+    <!-- Event Listings -->
+    <div id="eventListings">
+      <!-- Events will be dynamically loaded here -->
+    </div>
+
+    <!-- Detailed Event Information Modal -->
+    <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="eventDetails">
+              <!-- Detailed event information will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    var events = [
+      {
+        title: "Workshop on Sustainable Living",
+        date: "2024-04-15",
+        time: "10:00 AM - 12:00 PM",
+        location: "Community Center",
+        organizer: "Green Earth Organization",
+        description: "Join us for a workshop on sustainable living practices.",
+        agenda: "10:00 AM - Introduction<br>10:30 AM - Presentation<br>11:30 AM - Q&A",
+        guestSpeakers: "John Doe, Jane Smith",
+        costs: "Free",
+        requiresRegistration: true,
+        registrationLink: "https://example.com/register/workshop",
+        imageUrl: "https://www.fortworthtexas.gov/files/assets/public/images/victory-forest-community-center.jpg?w=1200",
+        category: "workshops",
+        details: {
+          articles: [
+            {
+              title: "The Importance of Sustainable Living",
+              link: "https://example.com/sustainable-living-article"
+            },
+            {
+              title: "10 Tips for Eco-Friendly Living",
+              link: "https://example.com/eco-friendly-living-tips"
+            }
+          ],
+          images: [
+            "https://www.example.com/workshop-image1.jpg",
+            "https://www.example.com/workshop-image2.jpg"
+          ]
+        }
+      },
+      {
+        title: "Tree Planting Event",
+        date: "2024-05-20",
+        time: "9:00 AM - 12:00 PM",
+        location: "City Park",
+        organizer: "Local Environmental Group",
+        description: "Help us plant trees to improve the environment and beautify our community.",
+        requiresRegistration: false,
+        imageUrl: "https://www.example.com/tree-planting.jpg",
+        category: "tree-planting",
+        details: {
+          articles: [
+            {
+              title: "Benefits of Tree Planting",
+              link: "https://example.com/benefits-of-tree-planting"
+            }
+          ],
+          images: [
+            "https://www.example.com/tree-planting-image1.jpg",
+            "https://www.example.com/tree-planting-image2.jpg"
+          ]
+        }
+      },
+      {
+        title: "Recycling Workshop",
+        date: "2024-06-10",
+        time: "2:00 PM - 4:00 PM",
+        location: "Public Library",
+        organizer: "Recycling Alliance",
+        description: "Learn about the importance of recycling and how to recycle effectively.",
+        requiresRegistration: true,
+        registrationLink: "https://example.com/register/recycling-workshop",
+        imageUrl: "https://www.example.com/recycling-workshop.jpg",
+        category: "workshops",
+        details: {
+          articles: [
+            {
+              title: "The Recycling Process Explained",
+              link: "https://example.com/recycling-process"
+            }
+          ],
+          images: [
+            "https://www.example.com/recycling-workshop-image1.jpg",
+            "https://www.example.com/recycling-workshop-image2.jpg"
+          ]
+        }
+      }
+    ];
+
+    // Function to render event listings
+    function renderEventListings(filteredEvents) {
+      var eventListings = document.getElementById("eventListings");
+      eventListings.innerHTML = "";
+      filteredEvents.forEach(function(event, index) {
+        var card = document.createElement("div");
+        card.classList.add("card", "mb-3");
+
+        var cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
+
+        var title = document.createElement("h5");
+        title.classList.add("card-title");
+        title.textContent = event.title;
+
+        var date = document.createElement("p");
+        date.classList.add("card-text");
+        date.innerHTML = "<strong>Date:</strong> " + event.date;
+
+        var time = document.createElement("p");
+        time.classList.add("card-text");
+        time.innerHTML = "<strong>Time:</strong> " + event.time;
+
+        var location = document.createElement("p");
+        location.classList.add("card-text");
+        location.innerHTML = "<strong>Location:</strong> " + event.location;
+
+        var organizer = document.createElement("p");
+        organizer.classList.add("card-text");
+        organizer.innerHTML = "<strong>Organizer:</strong> " + event.organizer;
+
+        var detailsButton = document.createElement("button");
+        detailsButton.classList.add("btn", "btn-primary");
+        detailsButton.textContent = "View Details";
+        detailsButton.dataset.toggle = "modal";
+        detailsButton.dataset.target = "#eventModal";
+        detailsButton.addEventListener("click", function() {
+          displayEventDetails(event);
+        });
+
+        var image = document.createElement("img");
+        image.classList.add("card-img-top");
+        image.src = event.imageUrl;
+        image.alt = event.title;
+
+        cardBody.appendChild(title);
+        cardBody.appendChild(date);
+        cardBody.appendChild(time);
+        cardBody.appendChild(location);
+        cardBody.appendChild(organizer);
+        cardBody.appendChild(detailsButton);
+        card.appendChild(image);
+        card.appendChild(cardBody);
+
+        eventListings.appendChild(card);
+      });
+    }
+
+    // Function to display detailed event information in modal
+    function displayEventDetails(event) {
+      var eventDetails = document.getElementById("eventDetails");
+      eventDetails.innerHTML = `
+        <h5>${event.title}</h5>
+        <p><strong>Date:</strong> ${event.date}</p>
+        <p><strong>Time:</strong> ${event.time}</p>
+        <p><strong>Location:</strong> ${event.location}</p>
+        <p><strong>Organizer:</strong> ${event.organizer}</p>
+        <p><strong>Description:</strong> ${event.description}</p>
+        <p><strong>Agenda:</strong> ${event.agenda || "Not available"}</p>
+        <p><strong>Guest Speakers:</strong> ${event.guestSpeakers || "Not available"}</p>
+        <p><strong>Costs:</strong> ${event.costs || "Free"}</p>
+        ${event.requiresRegistration ? `<p><strong>Registration Link:</strong> <a href="${event.registrationLink}" target="_blank">${event.registrationLink}</a></p>` : ""}
+      `;
+
+      // Append articles
+      if (event.details.articles && event.details.articles.length > 0) {
+        eventDetails.innerHTML += "<p><strong>Articles:</strong></p>";
+        event.details.articles.forEach(function(article) {
+          eventDetails.innerHTML += `<p><a href="${article.link}" target="_blank">${article.title}</a></p>`;
+        });
+      }
+
+      // Append images
+      if (event.details.images && event.details.images.length > 0) {
+        eventDetails.innerHTML += "<p><strong>Images:</strong></p>";
+        event.details.images.forEach(function(imageUrl) {
+          eventDetails.innerHTML += `<img src="${imageUrl}" alt="Image">`;
+        });
+      }
+    }
+
+    // Event listener to filter events
+    document.getElementById("eventFilterForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var category = document.getElementById("category").value;
+      var location = document.getElementById("location").value;
+      var date = document.getElementById("date").value;
+
+      var filteredEvents = events.filter(function(event) {
+        return (!category || event.category === category) &&
+               (!location || event.location.toLowerCase().includes(location.toLowerCase())) &&
+               (!date || event.date === date);
+      });
+
+      renderEventListings(filteredEvents);
+    });
+
+    // Initially render event listings with all events
+    renderEventListings(events);
+  </script>
+</body>
+</html>

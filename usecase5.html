@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Tracking</title>
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Historical Tracking</h1>
+    <p>Choose a specific month to view your historical carbon footprint data:</p>
+    <form id="monthForm">
+      <label for="month">Select Month:</label>
+      <input type="month" id="month" name="month">
+      <button type="submit">View Data</button>
+    </form>
+    <div id="carbonChartContainer">
+      <canvas id="carbonChart" width="800" height="400"></canvas>
+    </div>
+    <div id="milestones"></div>
+  </div>
+
+  <script>
+    // Sample data for demonstration
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
+    const carbonData = [50, 45, 40, 35, 30]; // Sample carbon footprint values
+
+    // Function to create line chart
+    function createChart(selectedData) {
+      const ctx = document.getElementById('carbonChart').getContext('2d');
+      const carbonChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: [{
+            label: 'Carbon Footprint',
+            data: selectedData,
+            borderColor: 'rgb(75, 192, 192)',
+            borderWidth: 2,
+            fill: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Month'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Carbon Footprint (kg CO2)'
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return 'Carbon Footprint: ' + context.raw;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Function to handle form submission
+    document.getElementById('monthForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const selectedMonth = document.getElementById('month').value;
+      const monthIndex = parseInt(selectedMonth.split('-')[1], 10) - 1;
+      const selectedData = carbonData.slice(0, monthIndex + 1); // Slice data up to selected month
+      createChart(selectedData);
+      document.getElementById('milestones').innerHTML = ''; // Clear milestones
+      checkMilestones(); // Check for milestones
+    });
+
+    // Function to check for milestones or achievements
+    function checkMilestones() {
+      // Logic to check if any milestones or achievements are reached based on the selected data points
+      // For demonstration, let's assume a milestone is reached if carbon footprint decreases by more than 10%
+      for (let i = 1; i < carbonData.length; i++) {
+        const reductionPercentage = ((carbonData[i - 1] - carbonData[i]) / carbonData[i - 1]) * 100;
+        if (reductionPercentage >= 10) {
+          const milestoneElement = document.createElement('p');
+          milestoneElement.textContent = `Milestone achieved: Carbon footprint reduced by ${reductionPercentage.toFixed(2)}% between ${months[i - 1]} and ${months[i]}`;
+          document.getElementById('milestones').appendChild(milestoneElement);
+        }
+      }
+    }
+
+    // Call the function to create the chart initially
+    createChart(carbonData);
+  </script>
+</body>
+</html>
