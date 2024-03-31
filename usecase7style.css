@@ -1,73 +1,96 @@
-/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
+    background-image: url(.vscode/background.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Apply styles to the container */
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
     padding: 20px;
-}
-
-/* Form Styles */
-.form-group {
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Apply styles to the h1 */
+  h1 {
+    text-align: center;
+    color: #333;
     margin-bottom: 20px;
-}
-
-.form-group label {
+  }
+  
+  /* Apply styles to the form */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  /* Apply styles to the form label */
+  form label {
     font-weight: bold;
-}
-
-.form-control {
+  }
+  
+  /* Apply styles to the form input */
+  form input[type="text"],
+  form input[type="date"],
+  form input[type="time"],
+  form select,
+  form textarea {
     width: 100%;
     padding: 10px;
-    font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-.btn-primary {
-    display: inline-block;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  /* Apply styles to the button */
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
     background-color: #007bff;
     color: #fff;
-    padding: 10px 20px;
-    font-size: 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-primary:hover {
+  }
+  
+  /* Apply styles to the button on hover */
+  button[type="submit"]:hover {
     background-color: #0056b3;
-}
-
-/* Table Styles */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.table th, .table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-    text-align: left;
+  }
+  
+  /* Apply styles to the uploaded event section */
+  #uploadedEvent {
+    display: none;
+  }
+  
+  /* Apply styles to the card */
+  .card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Apply styles to the card title */
+  .card-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Apply styles to the card text */
+  .card-text {
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  /* Apply styles to the card link */
+  .card-text a {
+    color: #007bff;
+    text-decoration: none;
 }
 
 .table tbody tr:nth-child(even) {
