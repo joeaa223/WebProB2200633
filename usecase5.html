@@ -6,18 +6,13 @@
   <title>Historical Tracking</title>
   <!-- Include Chart.js library -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-  </style>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="usecase5.css">
 </head>
 <body>
   <div class="container">
     <h1>Historical Tracking</h1>
-    <p>Choose a specific month to view your historical carbon footprint data:</p>
+    <p>Choose the month of historical carbon footprint data you want to view:</p>
     <form id="monthForm">
       <label for="month">Select Month:</label>
       <input type="month" id="month" name="month">
@@ -29,18 +24,29 @@
     <div id="milestones"></div>
   </div>
 
+  <!-- Modal Dialog for Detailed Information -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal" id="modal">
+    <h2 id="modalTitle">Detailed Information</h2>
+    <div id="modalContent">
+      <!-- Detailed information will be dynamically inserted here -->
+    </div>
+    <button id="closeModal">Close</button>
+  </div>
+
   <script>
     // Sample data for demonstration
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
-    const carbonData = [50, 45, 40, 35, 30]; // Sample carbon footprint values
+    const carbonData = [50, 60, 40, 45, 30]; // Sample carbon footprint values
+    let carbonChart; // Variable to hold the chart instance
 
     // Function to create line chart
     function createChart(selectedData) {
       const ctx = document.getElementById('carbonChart').getContext('2d');
-      const carbonChart = new Chart(ctx, {
+      carbonChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: months,
+          labels: months.slice(0, selectedData.length),
           datasets: [{
             label: 'Carbon Footprint',
             data: selectedData,
@@ -62,7 +68,7 @@
             y: {
               title: {
                 display: true,
-                text: 'Carbon Footprint (kg CO2)'
+                text: 'Carbon Footprint (kg CO2)',
               }
             }
           },
@@ -72,6 +78,17 @@
                 label: function(context) {
                   return 'Carbon Footprint: ' + context.raw;
                 }
+              }
+            },
+            zoom: {
+              zoom: {
+                wheel: {
+                  enabled: true
+                },
+                pinch: {
+                  enabled: true
+                },
+                mode: 'xy'
               }
             }
           }
@@ -87,15 +104,15 @@
       const selectedData = carbonData.slice(0, monthIndex + 1); // Slice data up to selected month
       createChart(selectedData);
       document.getElementById('milestones').innerHTML = ''; // Clear milestones
-      checkMilestones(); // Check for milestones
+      checkMilestones(selectedData); // Check for milestones
     });
 
     // Function to check for milestones or achievements
-    function checkMilestones() {
+    function checkMilestones(selectedData) {
       // Logic to check if any milestones or achievements are reached based on the selected data points
       // For demonstration, let's assume a milestone is reached if carbon footprint decreases by more than 10%
-      for (let i = 1; i < carbonData.length; i++) {
-        const reductionPercentage = ((carbonData[i - 1] - carbonData[i]) / carbonData[i - 1]) * 100;
+      for (let i = 1; i < selectedData.length; i++) {
+        const reductionPercentage = ((selectedData[i - 1] - selectedData[i]) / selectedData[i - 1]) * 100;
         if (reductionPercentage >= 10) {
           const milestoneElement = document.createElement('p');
           milestoneElement.textContent = `Milestone achieved: Carbon footprint reduced by ${reductionPercentage.toFixed(2)}% between ${months[i - 1]} and ${months[i]}`;
@@ -103,6 +120,41 @@
         }
       }
     }
+
+    // Event listener for chart click event
+    document.getElementById('carbonChart').addEventListener('click', function(event) {
+      const activePoints = carbonChart.getElementsAtEventForMode(event, 'point', carbonChart.options);
+      if (activePoints.length > 0) {
+        const clickedIndex = activePoints[0].index;
+        const clickedMonth = months[clickedIndex];
+        const clickedData = carbonData[clickedIndex];
+        showDetailedInfo(clickedMonth, clickedData);
+      }
+    });
+
+    // Function to show detailed information as a modal dialog
+    function showDetailedInfo(month, data) {
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modal = document.getElementById('modal');
+      const modalContent = document.getElementById('modalContent');
+      const modalTitle = document.getElementById('modalTitle');
+      modalContent.innerHTML = `
+        <p>Month: ${month}</p>
+        <p>Carbon Footprint: ${data} kg CO2</p>
+        <!-- Add more detailed information, insights, explanations, and notable changes here -->
+      `;
+      modalTitle.textContent = 'Detailed Information';
+      modal.style.display = 'block';
+      modalOverlay.style.display = 'block';
+    }
+
+    // Close the modal when the close button is clicked
+    document.getElementById('closeModal').addEventListener('click', function() {
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modal = document.getElementById('modal');
+      modal.style.display = 'none';
+      modalOverlay.style.display = 'none';
+    });
 
     // Call the function to create the chart initially
     createChart(carbonData);
