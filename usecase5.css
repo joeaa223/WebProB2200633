@@ -1,0 +1,105 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url(.vscode/background.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+}
+
+p {
+  color: black;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input[type="month"] {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#carbonChartContainer {
+  margin-bottom: 20px;
+}
+
+#carbonChart {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+#modalContent {
+  margin-top: 10px;
+}
+
+#modalTitle {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#closeModal {
+  display: block;
+  margin: 20px auto 0;
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#closeModal:hover {
+  background-color: #c82333;
+}
