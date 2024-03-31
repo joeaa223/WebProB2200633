@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 /* Reset default browser styles */
 body, h1, h2, p, ul, li {
     margin: 0;
@@ -6,19 +12,42 @@ body, h1, h2, p, ul, li {
 
 /* Basic styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5; /* Light grey background */
+    color: #333; /* Dark grey text color */
     line-height: 1.6;
-    background-color: #f4f4f4;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #2ecc71; /* Green header background */
+    color: #fff; /* White text color */
     padding: 20px;
 }
 
 header h1 {
-    margin: 0;
+    font-size: 2.5rem;
+}
+.nav{
+    display: flex;
+    margin-right: 16px;
+}
+
+nav a {
+    text-decoration: none; /* 移除链接的下划线 */
+    color: #f2f2f2;
+    font-weight: 600;
+    font-size: 19px;
+    transition: 300ms;
+    padding: 8px 16px;
+    border-radius: 99px;
+}
+
+.nav a:hover{
+    background-color: rgba(181, 181, 181, 0.573);
+}
+
+.nav .logo{
+    display: none;
 }
 
 nav ul {
@@ -31,19 +60,32 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #fff; /* White link color */
     text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
 }
 
 section {
     padding: 20px;
+    margin: 20px 0;
+    background-color: #fff; /* White section background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #34495e; /* Dark blue footer background */
+    color: #fff; /* White text color */
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -62,4 +104,33 @@ footer {
 .error-message {
     color: red;
     font-weight: bold;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #2ecc71; /* Green submit button background */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #27ae60; /* Darker green on hover */
 }
