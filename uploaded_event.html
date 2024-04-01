@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eco-Friendly Event Calendar</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="uploaded_event.css">
 </head>
 <body>
   <div class="container">
@@ -19,7 +20,7 @@
             <option value="">All Categories</option>
             <option value="workshops">Workshops</option>
             <option value="tree-planting">Tree Planting</option>
-            <!-- Add more categories here -->
+            
           </select>
         </div>
         <div class="form-group col-md-4">
@@ -79,7 +80,6 @@
         costs: "Free",
         requiresRegistration: true,
         registrationLink: "https://example.com/register/workshop",
-        imageUrl: "https://www.fortworthtexas.gov/files/assets/public/images/victory-forest-community-center.jpg?w=1200",
         category: "workshops",
         details: {
           articles: [
@@ -93,7 +93,6 @@
             }
           ],
           images: [
-            "https://www.example.com/workshop-image1.jpg",
             "https://www.example.com/workshop-image2.jpg"
           ]
         }
@@ -106,7 +105,6 @@
         organizer: "Local Environmental Group",
         description: "Help us plant trees to improve the environment and beautify our community.",
         requiresRegistration: false,
-        imageUrl: "https://www.example.com/tree-planting.jpg",
         category: "tree-planting",
         details: {
           articles: [
@@ -130,7 +128,6 @@
         description: "Learn about the importance of recycling and how to recycle effectively.",
         requiresRegistration: true,
         registrationLink: "https://example.com/register/recycling-workshop",
-        imageUrl: "https://www.example.com/recycling-workshop.jpg",
         category: "workshops",
         details: {
           articles: [

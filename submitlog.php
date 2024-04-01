@@ -3,24 +3,17 @@
 session_start();
 
 // Check if the user is authenticated
-if (!isset($_SESSION['authenticated'])) {
+//if (!isset($_SESSION['authenticated'])) {
     // Redirect to the sign-up page or login page
-    header("Location: signup.php");
-    exit(); // Stop script execution
-}
+    //header("Location: signup.php");
+    //exit(); // Stop script execution
+//}
 
 // Connect to your database
-$servername = "localhost"; // Replace with your server name
-$username = "username"; // Replace with your username
-$password = "password"; // Replace with your password
-$dbname = "your_database"; // Replace with your database name
+$conn = mysqli_connect('localhost', 'root', '', 'hcs');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Process form submission
@@ -35,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         // Record updated in the activity log
         $activity_message = "User selected: Transport - $transport, Meal - $meal, Energy - $energy";
-        $activity_sql = "INSERT INTO activity_log (message) VALUES ('$activity_message')";
+        $activity_sql = "INSERT INTO daily_log (message) VALUES ('$activity_message')";
         $conn->query($activity_sql);
 
         // Close the database connection

@@ -11,7 +11,7 @@
         <h1>Daily Log Activity</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index1.php">Home</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="dailylog.php">Daily Log</a></li>
                 <li><a href="signup.php">Sign Up</a></li>
@@ -23,17 +23,10 @@
         <h2>User Submissions</h2>
         <?php
         // Connect to your database
-        $servername = "localhost"; // Replace with your server name
-        $username = "username"; // Replace with your username
-        $password = "password"; // Replace with your password
-        $dbname = "your_database"; // Replace with your database name
+        $conn = mysqli_connect('localhost', 'root', '', 'hcs');
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
         }
 
         // Fetch data from the database table

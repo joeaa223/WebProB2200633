@@ -2,47 +2,34 @@
 // Start the session
 session_start();
 
-// Check if the user is authenticated
-if (!isset($_SESSION['authenticated'])) {
-    // Redirect to the sign-up page or login page
-    header("Location: signup.php");
-    exit(); // Stop script execution
-}
-
 // Connect to your database
-$servername = "localhost"; // Replace with your server name
-$username = "username"; // Replace with your username
-$password = "password"; // Replace with your password
-$dbname = "your_database"; // Replace with your database name
+$conn = mysqli_connect('localhost', 'root', '', 'hcs');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Fetch user profile data
 $user_id = 1; // Assuming user authentication is implemented and user ID is available
-$sql_profile = "SELECT * FROM user_profiles WHERE id = $user_id";
+$sql_profile = "SELECT * FROM tbl_profile WHERE ID = $user_id";
 $result_profile = $conn->query($sql_profile);
 
 if ($result_profile->num_rows > 0) {
     $row_profile = $result_profile->fetch_assoc();
     // Retrieve user profile data
     $username = $row_profile["username"];
-    $contact_number = $row_profile["contact_number"];
-    $email = $row_profile["email"];
-    $commuting_methods = $row_profile["commuting_methods"];
-    $energy_sources = $row_profile["energy_sources"];
-    $dietary_preferences = $row_profile["dietary_preferences"];
 } else {
     echo "No user profile found.";
 }
 
+$activity_message = ""; // Initialize $activity_message to an empty string
+
 // Fetch recent activity data
-$sql_activity = "SELECT * FROM activity_log WHERE user_id = $user_id ORDER BY timestamp DESC LIMIT 1";
+$currentDate = date("Y-m-d");
+
+// SQL query with current date and user ID
+$sql_activity = "SELECT * FROM daily_log WHERE Id = $user_id AND log_date = '$currentDate' ORDER BY log_date DESC LIMIT 1";
+
 $result_activity = $conn->query($sql_activity);
 
 if ($result_activity->num_rows > 0) {
@@ -50,11 +37,9 @@ if ($result_activity->num_rows > 0) {
     // Retrieve recent activity data
     $activity_message = $row_activity["message"];
 } else {
-    echo "No recent activity found.";
+    echo "No recent activity found for user ID: $user_id on $currentDate.";
 }
 
-// Close the database connection
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +56,7 @@ $conn->close();
         <h1>Carbon Footprint Dashboard</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index1.php">Home</a></li>
                 <li><a href="dailylog.php">Daily Log</a></li>
                 <li><a href="signup.php">Sign Up</a></li>
                 <li><a href="editprofile.php">Edit Profile</a></li>
@@ -82,33 +67,13 @@ $conn->close();
     <section>
         <h2>Calculate Your Carbon Footprint</h2>
         <p>Welcome, <?php echo $username; ?>!</p>
-        <p>Your recent activity: <?php echo $activity_message; ?></p>
+        <?php if (!empty($activity_message)) : ?>
+            <p>Your recent activity: <?php echo $activity_message; ?></p>
+        <?php endif; ?>
         <p>Based on your profile and recent activity, your carbon footprint is being calculated...</p>
 
         <!-- Additional content or form for displaying the calculated carbon footprint -->
         <div class="dashboard-container">
-            <?php
-            // Check if there is sufficient data available
-            $sufficient_data = true; // Assuming sufficient data by default
-
-            // Check if there are recent activity data
-            if ($result_activity->num_rows == 0) {
-                $sufficient_data = false;
-                echo "<p class='error-message'>No recent activity found. Please update your activity log.</p>";
-            }
-
-            // Check if there is user profile data
-            if (empty($username)) {
-                $sufficient_data = false;
-                echo "<p class='error-message'>No user profile found. Please update your profile.</p>";
-            }
-
-            // Render the dashboard content if there is sufficient data
-            if ($sufficient_data) {
-                // Render carbon footprint overview and emissions breakdown
-                // ...
-            }
-            ?>
             <!-- Carbon Footprint Overview -->
             <h2>Carbon Footprint Overview</h2>
             <div class="carbon-footprint-chart">
@@ -137,7 +102,7 @@ $conn->close();
     <script>
         // Sample data for carbon footprint (replace with real-time data)
         var data = {
-            labels: ["Transport", "Energy", "Diet"],
+            labels: ["Transport", "Energy", "Meal"],
             datasets: [{
                 label: "Carbon Footprint",
                 data: [300, 200, 100], // Sample carbon footprint values for each category

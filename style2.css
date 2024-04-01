@@ -1,0 +1,135 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: rgba(52, 58, 64, 0.8);
+    color: #ffffff;
+    padding: 50px 0 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+    position: relative;
+}
+
+.back-to-home {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+.header-title {
+    margin-bottom: 20px;
+}
+
+.header-subtitle {
+    margin-bottom: 40px;
+}
+
+.category-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-buttons .btn {
+    margin: 10px;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: rgba(76, 72, 72, 0.8);
+}
+
+.category-buttons .btn:hover {
+    background-color: #07532a;
+}
+
+.back-to-home {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+footer {
+    background-color: rgba(52, 58, 64, 0.8);
+    color: #ffffff;
+    padding: 50px 0;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Increase the box-shadow */
+    font-size: 12px;
+}
+
+footer .container {
+    padding-top: 20px;
+}
+
+footer .row {
+    justify-content: space-between;
+}
+
+footer .list-unstyled {
+    margin: 0;
+    padding: 0;
+    text-align: left; /* Align the social media buttons to the left */
+}
+
+footer .list-unstyled li {
+    margin-bottom: 10px;
+    display: inline-block; /* Display the social media buttons inline */
+}
+
+footer .list-unstyled li:not(:last-child) {
+    margin-right: 10px; /* Add some space between the social media buttons */
+}
+
+footer .list-unstyled li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+footer .list-unstyled li a:hover {
+    color: #2964da; /* Change color on hover */
+}
+
+
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+

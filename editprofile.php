@@ -3,11 +3,11 @@
 session_start();
 
 // Check if the user is authenticated
-if (!isset($_SESSION['authenticated'])) {
+//if (!isset($_SESSION['authenticated'])) {
     // Redirect to the sign-up page or login page
-    header("Location: signup.php");
-    exit(); // Stop script execution
-}
+    //header("Location: signup.php");
+    //exit(); // Stop script execution
+//}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ if (!isset($_SESSION['authenticated'])) {
         <h1>Reduce Carbon Emissions</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index1.php">Home</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="dailylog.php">Daily Log</a></li>
                 <li><a href="signup.php">Sign Up</a></li>
@@ -37,21 +37,15 @@ if (!isset($_SESSION['authenticated'])) {
         // Fetch user's existing profile information from the database
         // Perform database connection and query here
         // Example:
-        $servername = "localhost";
-        $username = "username";
-        $password = "password";
-        $dbname = "your_database_name";
+        $conn = mysqli_connect('localhost', 'root', '', 'hcs');
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+            }
         // Assuming user authentication is implemented and user ID is available
         $user_id = 1; // Replace with actual user ID
 
-        $sql = "SELECT * FROM user_profiles WHERE id = $user_id";
+        $sql = "SELECT * FROM tbl_profile WHERE id = $user_id";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

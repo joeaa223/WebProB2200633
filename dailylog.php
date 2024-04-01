@@ -3,11 +3,11 @@
 session_start();
 
 // Check if the user is authenticated
-if (!isset($_SESSION['authenticated'])) {
+//if (!isset($_SESSION['authenticated'])) {
     // Redirect to the sign-up page or login page
-    header("Location: signup.php");
-    exit(); // Stop script execution
-}
+    //header("Location: signup.php");
+    //exit(); // Stop script execution
+//}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ if (!isset($_SESSION['authenticated'])) {
         <h1>Daily Log</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index1.php">Home</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="editprofile.php">Edit Profile</a></li>
             </ul>

@@ -1,16 +1,9 @@
 <?php
 // Connect to your database
-$servername = "localhost"; // Replace with your server name
-$username = "username"; // Replace with your username
-$password = "password"; // Replace with your password
-$dbname = "your_database"; // Replace with your database name
+$conn = mysqli_connect('localhost', 'root', '', 'hcs');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Process form submission
@@ -20,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Add more fields as needed for the sign-up form
 
     // Check if username or email already exists
-    $check_username_sql = "SELECT * FROM users WHERE username = '$username'";
-    $check_email_sql = "SELECT * FROM users WHERE email = '$email'";
+    $check_username_sql = "SELECT * FROM tbl_profile WHERE username = '$username'";
+    $check_email_sql = "SELECT * FROM tbl_profile WHERE email = '$email'";
     $username_result = $conn->query($check_username_sql);
     $email_result = $conn->query($check_email_sql);
 
@@ -36,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If no errors, insert data into the database
     if (empty($username_error) && empty($email_error)) {
         // Insert data into the database table
-        $insert_sql = "INSERT INTO users (username, email) VALUES ('$username', '$email')";
+        $insert_sql = "INSERT INTO tbl_profile (username, email) VALUES ('$username', '$email')";
 
-        if ($conn->query($insert_sql) === TRUE) {
+        if ($conn->query($insert_sql) == TRUE) {
             // Redirect to confirmation page with success message
             header("Location: confirmation.php?success=true");
-            exit();
+            exit(); // Exit after redirection
         } else {
             $error_message = "Error: " . $insert_sql . "<br>" . $conn->error;
         }
@@ -51,3 +44,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the database connection
 $conn->close();
 ?>
+

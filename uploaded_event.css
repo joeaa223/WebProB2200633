@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(.vscode/background.jpg); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+  /* Apply styles to the container */
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Apply styles to the h1 */
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Apply styles to the form */
+  form {
+    margin-bottom: 20px;
+  }
+  
+  /* Apply styles to the form label */
+  form label {
+    font-weight: bold;
+  }
+  
+  /* Apply styles to the form input */
+  form input[type="text"],
+  form input[type="date"],
+  form input[type="time"],
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  /* Apply styles to the button */
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Apply styles to the button on hover */
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Apply styles to the uploaded event section */
+  #uploadedEvent {
+    display: none;
+  }
+  
+  /* Apply styles to the card */
+  .card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Apply styles to the card title */
+  .card-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Apply styles to the card text */
+  .card-text {
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  /* Apply styles to the card link */
+  .card-text a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  

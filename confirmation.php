@@ -1,5 +1,6 @@
 <?php
 // Check if signup was successful
+session_start();
 if (isset($_GET['success']) && $_GET['success'] == 'true') {
     $message = "Your profile has been successfully created. Thank you for signing up!";
 } else {
@@ -20,7 +21,7 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
         <h1>Reduce Carbon Emissions</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index1.php">Home</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="dailylog.php">Daily Log</a></li>
                 <li><a href="editprofile.php">Edit Profile</a></li>

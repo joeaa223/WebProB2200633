@@ -1,0 +1,112 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Nicer font selection */
+    margin: 0;
+    padding: 0;
+}
+
+#video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#video-background {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content-overlay {
+    position: relative;
+    z-index: 1;
+}
+
+header, footer {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    color: #fff; /* White text color for better visibility */
+    padding: 15px; /* Add padding for better spacing */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px; /* Increased footer height */
+}
+
+header h1 {
+    font-size: 28px; /* Increased header font size */
+    margin: 0;
+}
+
+/* Style for the table */
+.table {
+    width: 90%; /* Make the table wider */
+    max-width: 1000px; /* Limit the maximum width */
+    margin: 20px auto; /* Center the table horizontally */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    background-color: rgba(255, 255, 255, 0.7); /* Slight transparency with light gray color */
+}
+
+.table th, .table td {
+    padding: 15px; /* Increase padding for better spacing */
+}
+
+.table th {
+    background-color: #97bc97;
+    color: #333;
+    font-weight: bold;
+}
+
+.table tbody tr:hover {
+    background-color: #97bc97;
+}
+
+.table td {
+    background-color: #97bc97;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Track color */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3); /* Thumb color */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5); /* Hover color for the thumb */
+}
+
+.btn {
+    border-radius: 20px; /* Adjust border-radius for rounded corners */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply font-family */
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold; /* Apply bold font weight */
+}
+
+.btn-primary {
+    background-color: #07532a; /* Primary button background color */
+    color: #fff; /* Button text color */
+    border-color: #07532a; /* Border color */
+}
+
+.btn-primary:hover {
+    background-color: #07532a; /* Darker background color on hover */
+    border-color: #07532a; /* Darker border color on hover */
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(5, 74, 43, 0.5); /* Focus shadow color */
+}
