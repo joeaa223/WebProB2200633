@@ -21,13 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $transport = $_POST["transport"];
     $meal = $_POST["meal"];
     $energy = $_POST["energy"];
+    $transport_consumption = $_POST["transport_consumption"];
+    $meal_consumption = $_POST["meal_consumption"];
+    $energy_consumption = $_POST["energy_consumption"];
+    
 
     // Insert data into the database table
-    $sql = "INSERT INTO daily_log (transport, meal, energy) VALUES ('$transport', '$meal', '$energy')";
+    $sql = "INSERT INTO daily_log (transport, meal, energy, transport_consumption, meal_consumption, energy_consumption) VALUES ('$transport', '$meal', '$energy', '$transport_consumption', '$meal_consumption', '$energy_consumption' )";
 
     if ($conn->query($sql) === TRUE) {
         // Record updated in the activity log
-        $activity_message = "User selected: Transport - $transport, Meal - $meal, Energy - $energy";
+        $activity_message = "User selected: Transport - $transport, Meal - $meal, Energy - $energy, Transport consumption - $Transport_consumption, Meal consumption - $meal_consumption, Energy consumption - $energy_consumption ";
         $activity_sql = "INSERT INTO daily_log (message) VALUES ('$activity_message')";
         $conn->query($activity_sql);
 

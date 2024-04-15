@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="dailylog.php">Daily Log</a></li>
-                <li><a href="signup.php">Sign Up</a></li>
+                <li><a href="login.php">Login</a></li>
                 <li><a href="editprofile.php">Edit Profile</a></li>
                 <li><a href="survey.php">Survey</a></li>
                 <li><a href="learn.php">Learn</a></li>

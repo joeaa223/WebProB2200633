@@ -18,6 +18,11 @@ if ($result_profile->num_rows > 0) {
     $row_profile = $result_profile->fetch_assoc();
     // Retrieve user profile data
     $username = $row_profile["username"];
+    $contact_number = $row_profile["contact_number"];
+    $email = $row_profile["email"];
+    $commuting_methods = $row_profile["commuting_methods"];
+    $energy_sources = $row_profile["energy_sources"];
+    $dietary_preferences = $row_profile["dietary_preferences"];
 } else {
     echo "No user profile found.";
 }

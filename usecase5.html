@@ -7,7 +7,31 @@
   <!-- Include Chart.js library -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Link to external CSS file -->
-  <link rel="stylesheet" href="usecase5.css">
+  <link rel="stylesheet" href="style1.css">
+
+  <header>
+        
+        <h1 class="logo">foodprint </h1>
+        
+        <!--navbar-->
+        <nav class="nav">
+            <div class="divider"></div>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Service</a>
+            <a href="#">Contact</a>
+            
+        </nav>
+
+        <div class="user-form-group">
+            <a class="login" href="#">Login</a>
+            <a class="signup" href="#" >Sign up</a>
+
+        </div>
+    
+    
+
+    </header>
 </head>
 <body>
   <div class="container">
@@ -37,7 +61,9 @@
   <script>
     // Sample data for demonstration
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May'];
-    const carbonData = [50, 60, 40, 45, 30]; // Sample carbon footprint values
+    const transportData = [30, 35, 25, 28, 20]; // Sample transport carbon footprint values
+    const foodData = [20, 30, 18, 22, 15]; // Sample food carbon footprint values
+    const energyData = [25, 20, 30, 18, 12]; // Sample energy carbon footprint values
     let carbonChart; // Variable to hold the chart instance
 
     // Function to create line chart
@@ -46,14 +72,8 @@
       carbonChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: months.slice(0, selectedData.length),
-          datasets: [{
-            label: 'Carbon Footprint',
-            data: selectedData,
-            borderColor: 'rgb(75, 192, 192)',
-            borderWidth: 2,
-            fill: false
-          }]
+          labels: months,
+          datasets: selectedData
         },
         options: {
           responsive: true,
@@ -101,10 +121,34 @@
       event.preventDefault();
       const selectedMonth = document.getElementById('month').value;
       const monthIndex = parseInt(selectedMonth.split('-')[1], 10) - 1;
-      const selectedData = carbonData.slice(0, monthIndex + 1); // Slice data up to selected month
-      createChart(selectedData);
+      const selectedTransportData = transportData.slice(0, monthIndex + 1).concat(new Array(months.length - (monthIndex + 1)).fill(0)); // Fill missing data points with zeros
+      const selectedFoodData = foodData.slice(0, monthIndex + 1).concat(new Array(months.length - (monthIndex + 1)).fill(0)); // Fill missing data points with zeros
+      const selectedEnergyData = energyData.slice(0, monthIndex + 1).concat(new Array(months.length - (monthIndex + 1)).fill(0)); // Fill missing data points with zeros
+      createChart([
+        {
+          label: 'Transport Carbon Footprint',
+          data: selectedTransportData,
+          borderColor: 'rgb(255, 99, 132)',
+          borderWidth: 2,
+          fill: false
+        },
+        {
+          label: 'Food Carbon Footprint',
+          data: selectedFoodData,
+          borderColor: 'rgb(54, 162, 235)',
+          borderWidth: 2,
+          fill: false
+        },
+        {
+          label: 'Energy Carbon Footprint',
+          data: selectedEnergyData,
+          borderColor: 'rgb(75, 192, 192)',
+          borderWidth: 2,
+          fill: false
+        }
+      ]);
       document.getElementById('milestones').innerHTML = ''; // Clear milestones
-      checkMilestones(selectedData); // Check for milestones
+      checkMilestones(selectedTransportData); // Check for milestones
     });
 
     // Function to check for milestones or achievements
@@ -127,7 +171,7 @@
       if (activePoints.length > 0) {
         const clickedIndex = activePoints[0].index;
         const clickedMonth = months[clickedIndex];
-        const clickedData = carbonData[clickedIndex];
+        const clickedData = transportData[clickedIndex];
         showDetailedInfo(clickedMonth, clickedData);
       }
     });
@@ -157,7 +201,32 @@
     });
 
     // Call the function to create the chart initially
-    createChart(carbonData);
+    createChart([
+      {
+        label: 'Transport Carbon Footprint',
+        data: transportData,
+        borderColor: 'rgb(255, 99, 132)',
+        borderWidth: 2,
+        fill: false
+      },
+      {
+        label: 'Food Carbon Footprint',
+        data: foodData,
+        borderColor: 'rgb(54, 162, 235)',
+        borderWidth: 2,
+        fill: false
+      },
+      {
+        label: 'Energy Carbon Footprint',
+        data: energyData,
+        borderColor: 'rgb(75, 192, 192)',
+        borderWidth: 2,
+        fill: false
+      }
+    ]);
   </script>
 </body>
 </html>
+
+
+
